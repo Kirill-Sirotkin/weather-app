@@ -10,8 +10,8 @@ interface Component {
 
 const app: HTMLDivElement = document.querySelector<HTMLDivElement>("#app")!;
 const components: Component[] = [
-  { id: "display", component: display },
   { id: "search", component: search },
+  { id: "display", component: display },
 ];
 
 app.innerHTML = main;
