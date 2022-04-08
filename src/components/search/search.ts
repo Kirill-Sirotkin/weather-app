@@ -12,9 +12,35 @@ const settingsImg: HTMLImageElement | null | undefined =
 const settingsImgClasses: DOMTokenList | null | undefined =
   settingsImg?.classList;
 
+const temperatureContainer: HTMLElement | null = searchContainer.querySelector(
+  "#temperature-button-container"
+);
+
+const temperatureContainerClasses: DOMTokenList | null | undefined =
+  temperatureContainer?.classList;
+
+const temperatureButtons: NodeListOf<HTMLButtonElement> =
+  searchContainer.querySelectorAll(".temperature-button");
+
 const rotateLine: string = "animate-wiggle";
+const opacityLine: string = "opacity-0";
+var tempOpacity: boolean = false;
 
 settingsButton?.addEventListener("click", () => {
+  tempOpacity = !tempOpacity;
+  console.log(temperatureButtons);
+
+  if (tempOpacity) {
+    temperatureContainerClasses?.remove(opacityLine);
+    temperatureButtons.forEach((tempButton) => {
+      tempButton.disabled = !tempOpacity;
+    });
+  } else {
+    temperatureContainerClasses?.add(opacityLine);
+    temperatureButtons.forEach((tempButton) => {
+      tempButton.disabled = !tempOpacity;
+    });
+  }
   if (!settingsImgClasses?.contains(rotateLine)) {
     settingsImgClasses?.add(rotateLine);
     setTimeout(() => {
